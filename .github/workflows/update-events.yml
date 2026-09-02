@@ -1,0 +1,32 @@
+name: Atualizar Eventos DONKI
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: update-events
+  cancel-in-progress: false
+timeout-minutes: 10
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/fetch_donki.py
+        env:
+          NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/gst_latest.json
+          git diff --staged --quiet || git commit -m "Atualizar dados GST [skip ci]"
+          git push
