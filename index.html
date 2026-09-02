@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA DONKI - Dashboard de Tempestades Geomagnéticas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <img src="assets/img/nasa.svg" alt="NASA Logo" class="hero-logo">
+            <h1>Tempestades Geomagnéticas (GST)</h1>
+            <p>Monitoramento em tempo real dos eventos solares</p>
+        </div>
+    </header>
+    <main class="dashboard">
+        <section class="cards-grid" id="cardsGrid">
+            <div class="card" id="cardTotal"><h3>Total de Eventos</h3><p class="card-value" id="totalEvents">-</p></div>
+            <div class="card" id="cardKpMax"><h3>Kp Máximo</h3><p class="card-value" id="kpMax">-</p></div>
+            <div class="card" id="cardKpMedia"><h3>Kp Médio</h3><p class="card-value" id="kpMedia">-</p></div>
+            <div class="card" id="cardUltima"><h3>Última Atualização</h3><p class="card-value" id="ultimaAtualizacao">-</p></div>
+        </section>
+        <section class="charts-row">
+            <div class="chart-container">
+                <h2>Índice Kp ao longo do tempo</h2>
+                <canvas id="kpChart"></canvas>
+            </div>
+            <div class="map-container">
+                <h2>Mapa Ilustrativo</h2>
+                <img src="assets/img/earth.svg" alt="Terra" id="earthMap">
+                <p class="map-caption">Regiões afetadas por tempestades geomagnéticas</p>
+            </div>
+        </section>
+        <section class="timeline-section">
+            <h2>Linha do Tempo</h2>
+            <div id="timelineContainer" class="timeline"></div>
+        </section>
+        <section class="table-section">
+            <h2>Eventos Detalhados</h2>
+            <div class="table-wrapper">
+                <table id="eventsTable">
+                    <thead><tr><th>ID</th><th>Data/Hora</th><th>Kp Index</th><th>Fonte</th></tr></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </section>
+        <div class="controls">
+            <span id="lastUpdateLabel">Última atualização: carregando...</span>
+            <button id="refreshBtn" class="btn-primary">Atualizar Dados</button>
+        </div>
+    </main>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/charts.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
