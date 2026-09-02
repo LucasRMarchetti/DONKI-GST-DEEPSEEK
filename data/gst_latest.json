@@ -1,0 +1,32 @@
+[
+  {
+    "gstID": "GST-2025-001",
+    "startTime": "2025-03-01T10:30:00Z",
+    "kpIndex": 5.2,
+    "source": "Solar flare"
+  },
+  {
+    "gstID": "GST-2025-002",
+    "startTime": "2025-03-02T14:15:00Z",
+    "kpIndex": 7.8,
+    "source": "Coronal Mass Ejection"
+  },
+  {
+    "gstID": "GST-2025-003",
+    "startTime": "2025-03-03T22:00:00Z",
+    "kpIndex": 3.1,
+    "source": "Coronal hole"
+  },
+  {
+    "gstID": "GST-2025-004",
+    "startTime": "2025-03-05T06:45:00Z",
+    "kpIndex": 6.0,
+    "source": "Solar flare"
+  },
+  {
+    "gstID": "GST-2025-005",
+    "startTime": "2025-03-06T18:20:00Z",
+    "kpIndex": 4.5,
+    "source": "CME"
+  }
+]
