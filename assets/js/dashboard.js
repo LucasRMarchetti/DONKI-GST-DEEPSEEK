@@ -61,8 +61,7 @@ function updateDashboard() {
         lastUpdateLabel.textContent = 'Última atualização: ' + nowFormatted();
         return;
     }
-    const total = eventos.length;
-    const kpValues = eventos.map(ev => ev.kpIndex).filter(v => v !== undefined && v !== null);
+    const total = eventos.length;const kpValues = eventos.map(obterKp);
     const kpMax = kpValues.length ? Math.max(...kpValues) : 0;
     const kpMedia = kpValues.length ? (kpValues.reduce((a,b) => a+b, 0) / kpValues.length) : 0;
     totalEventsEl.textContent = total;
