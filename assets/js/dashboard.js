@@ -2,6 +2,18 @@ import { escapeHtml, formatDate, nowFormatted } from './utils.js';
 import { renderKpChart } from './charts.js';
 
 let eventos = [];
+function obterKp(evento) {
+    if (evento.kpIndex !== undefined && evento.kpIndex !== null) {
+        return Number(evento.kpIndex);
+    }
+
+    if (Array.isArray(evento.allKpIndex) && evento.allKpIndex.length) {
+        return Math.max(
+            ...evento.allKpIndex.map(k => Number(k.kpIndex || 0))
+        );
+    }
+    return 0;
+}
 let ultimaAtualizacao = null;
 
 const totalEventsEl = document.getElementById('totalEvents');
