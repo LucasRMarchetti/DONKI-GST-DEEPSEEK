@@ -5,7 +5,15 @@ export function renderKpChart(eventos, canvasId = 'kpChart') {
     if (!ctx) return;
     const sorted = [...eventos].sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
     const labels = sorted.map(ev => formatDate(ev.startTime));
-    const kpValues = sorted.map(ev => ev.kpIndex !== undefined ? ev.kpIndex : 0);
+   const kpValues = sorted.map(ev => {
+    if (ev.kpIndex !== undefined) return ev.kpIndex;
+
+    if (Array.isArray(ev.allKpIndex) && ev.allKpIndex.length) {
+        return Math.max(...ev.allKpIndex.map(k => Number(k.kpIndex || 0)));
+    }
+
+    return 0;
+});
     if (chartInstance) chartInstance.destroy();
     chartInstance = new Chart(ctx, {
         type: 'line',
