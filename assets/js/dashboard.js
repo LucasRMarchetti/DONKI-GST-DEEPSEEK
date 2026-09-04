@@ -72,7 +72,7 @@ function updateDashboard() {
     eventos.forEach(ev => {
         const id = escapeHtml(ev.gstID || '-');
         const start = escapeHtml(formatDate(ev.startTime));
-        const kp = ev.kpIndex !== undefined ? escapeHtml(ev.kpIndex.toFixed(1)) : '-';
+        const kp = escapeHtml(obterKp(ev).toFixed(1));
         const source = escapeHtml(ev.source || '-');
         tableHtml += `<tr><td>${id}</td><td>${start}</td><td>${kp}</td><td>${source}</td></tr>`;
     });
@@ -81,7 +81,7 @@ function updateDashboard() {
     const sorted = [...eventos].sort((a,b) => new Date(b.startTime) - new Date(a.startTime));
     sorted.slice(0, 20).forEach(ev => {
         const time = escapeHtml(formatDate(ev.startTime));
-        const kp = ev.kpIndex !== undefined ? escapeHtml(ev.kpIndex.toFixed(1)) : '-';
+        const kp = escapeHtml(obterKp(ev).toFixed(1));
         const source = escapeHtml(ev.source || '-');
         timelineHtml += `<div class="timeline-item"><span class="time">${time}</span><span class="kp">Kp ${kp}</span><span class="source">${source}</span></div>`;
     });
