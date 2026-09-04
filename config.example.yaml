@@ -1,0 +1,6 @@
+# Exemplo de configuração para Continue.dev
+provider: deepseek
+model: deepseek-chat
+roles:
+  chat: chat
+  edit: edit
